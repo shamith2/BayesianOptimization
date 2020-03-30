@@ -249,13 +249,21 @@ load_logs(new_optimizer, logs=["./logs.json"]);
 ```
 
 ## 5. Plotting
-For plotting the f(x) aganist the number of evaluations
+* For plotting the f(x) aganist the number of evaluations
 
 
 ```python
 from bayes_opt.plotter import JSONPlotter
-JSONPlotter(log_file, plot_file, func_name)
-```
+JSONPlotter(log_file, plot_file, func, x_eval=True)
+``` 
+
+* For plotting the f(x) aganist the first dimensional input (x1)
+
+
+```python
+from bayes_opt.plotter import JSONPlotter
+JSONPlotter(log_file, plot_file, func, x_eval=False)
+``` 
 
 ## Next Steps
 
