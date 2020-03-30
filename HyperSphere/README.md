@@ -3,6 +3,8 @@
 This is the implementation of the paper **BOCK: Bayesian Optimization with Cylindrical Kernels**(https://arxiv.org/pdf/1806.01619.pdf).
 Goal of this paper is to propose a new Bayesian Optimization algorithm for high dimensional problems. Usually, in Bayesian Optimization, we have just a handful of data compared to these days' big data. We infuse our strong prior knowledge that we want to find a solution around the center of the search space. Moreover, due to statistical efficiency, we try to keep the number of learnable optimal in a sense that it is samll enough not to degrade statistical efficiency and large enough to cover variety of functions we bump into in black-box function optimization problems.
 
+Copyright : https://github.com/ChangYong-Oh/HyperSphere
+
 ## 1. Setup
 
 To set up this repo, go:
@@ -10,7 +12,7 @@ To set up this repo, go:
 ** Virtual Environment _Without conda_ **
 
 ```
-git clone https://github.com/ChangYong-Oh/HyperSphere.git
+git clone https://github.com/shamith2/HyperSphere.git
 cd HyperSphere
 source setup_pip.sh
 ```
@@ -19,7 +21,7 @@ source setup_pip.sh
 
 ```
 conda create -n HyperSphere python=3.6 anaconda --yes
-git clone https://github.com/ChangYong-Oh/HyperSphere.git
+git clone https://github.com/shamith2/HyperSphere.git
 source HyperSphere/setup_conda.sh
 ```
 
