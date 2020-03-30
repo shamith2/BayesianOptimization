@@ -25,6 +25,8 @@ function in as few iterations as possible. This technique is particularly
 suited for optimization of high cost functions, situations where the balance
 between exploration and exploitation is important.
 
+Copyright : https://github.com/fmfn/BayesianOptimization
+
 ## Quick Start
 For a quick tour over the basics of the Bayesian Optimization package and More detailed information, other advanced features, and tips on usage/implementation can be found in the [examples](https://github.com/fmfn/BayesianOptimization/tree/master/examples) folder. 
 
