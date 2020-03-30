@@ -32,4 +32,4 @@ steps = 50
 optimizer.maximize(init_points=2, n_iter=0, acq='ei', kappa=5)
 optimizer.maximize(init_points=0, n_iter=steps, acq='ei', kappa=5)
 
-JSONPlotter(log_name=log_name, plot_name=plot_name, func=str(func))
+JSONPlotter(log_name=log_name, plot_name=plot_name, func=str(func), x_eval=True)
