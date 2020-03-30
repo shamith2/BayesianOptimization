@@ -7,16 +7,10 @@
 Pure Python implementation of bayesian global optimization with gaussian
 processes.
 
-* PyPI (pip):
+* Git:
 
 ```console
-$ pip install bayesian-optimization
-```
-
-* Conda from conda-forge channel:
-
-```console
-$ conda install -c conda-forge bayesian-optimization
+$ git clone https://github.com/shamith2/BayesianOptimization.git
 ```
 
 This is a constrained global optimization package built upon bayesian inference
