@@ -3,7 +3,7 @@ import torch
 from torch.autograd import Variable
 
 
-def bird(x):
+def birdy(x):
 	flat = x.dim() == 1
 	if flat:
 		x = x.view(1, -1)
