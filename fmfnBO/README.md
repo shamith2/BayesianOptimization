@@ -11,6 +11,10 @@ processes.
 
 ```console
 $ git clone https://github.com/shamith2/BayesianOptimization.git
+pip install --upgrade pip
+pip install numpy
+pip install scipy
+pip install scikit-learn
 ```
 
 This is a constrained global optimization package built upon bayesian inference
@@ -19,7 +23,7 @@ function in as few iterations as possible. This technique is particularly
 suited for optimization of high cost functions, situations where the balance
 between exploration and exploitation is important.
 
-Copyright : https://github.com/fmfn/BayesianOptimization
+Adapted from : https://github.com/fmfn/BayesianOptimization
 
 ## Quick Start
 For a quick tour over the basics of the Bayesian Optimization package and More detailed information, other advanced features, and tips on usage/implementation can be found in the [examples](https://github.com/fmfn/BayesianOptimization/tree/master/examples) folder. 
@@ -259,49 +263,6 @@ from bayes_opt.plotter import JSONPlotter
 JSONPlotter(log_file, plot_file, func, x_eval=False)
 ``` 
 
-## Next Steps
-
-This introduction covered the most basic functionality of the package. Checkout the [basic-tour](https://github.com/fmfn/BayesianOptimization/blob/master/examples/basic-tour.ipynb) and [advanced-tour](https://github.com/fmfn/BayesianOptimization/blob/master/examples/advanced-tour.ipynb) notebooks in the example folder, where you will find detailed explanations and other more advanced functionality. Also, browse the examples folder for implementation tips and ideas.
-
-Installation
-============
-
-### Installation
-
-The latest release can be obtained by two ways:
-
-* With PyPI (pip):
-
-      pip install bayesian-optimization
-
-* With conda (from conda-forge channel):
-
-      conda install -c conda-forge bayesian-optimization
-
-The bleeding edge version can be installed with:
-
-    pip install git+https://github.com/fmfn/BayesianOptimization.git
-
-If you prefer, you can clone it and run the setup.py file. Use the following
-commands to get a copy from Github and install all dependencies:
-
-    git clone https://github.com/fmfn/BayesianOptimization.git
-    cd BayesianOptimization
-    python setup.py install
-
-Citation
-============
-
-If you used this package in your research and is interested in citing it here's how you do it:
-
-```
-@Misc{,
-    author = {Fernando Nogueira},
-    title = {{Bayesian Optimization}: Open source constrained global optimization tool for {Python}},
-    year = {2014--},
-    url = " https://github.com/fmfn/BayesianOptimization"
-}
-```
 
 # Dependencies
 * Numpy
