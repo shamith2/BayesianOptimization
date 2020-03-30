@@ -13,7 +13,7 @@ To set up this repo, go:
 
 ```
 conda create -n HyperSphere python=3.6 anaconda --yes
-git clone https://github.com/shamith2/BayesianOptimization/HyperSphere.git
+git clone https://github.com/shamith2/BayesianOptimization.git
 conda install pytorch==0.3.1 -c pytorch
 pip install --upgrade pip
 pip install sampyl-mcmc
