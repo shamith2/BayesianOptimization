@@ -5,10 +5,10 @@ import sys
 import time
 from datetime import datetime
 
-sys.path.append(r'/home/shamith/')  # change path to where target.py is located
+sys.path.append(r'/::host::/BayesianOptimization/')
 from target import *
 
-EXPERIMENT_DIR = '/home/shamith/BayesianOptimization/HyperSphere/experiments/'  # change path to where experiments dir is to be located
+EXPERIMENT_DIR = '/::host::/BayesianOptimization/HyperSphere/experiments/'
 
 import torch
 from torch.autograd import Variable
