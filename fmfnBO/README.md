@@ -26,24 +26,13 @@ suited for optimization of high cost functions, situations where the balance
 between exploration and exploitation is important.
 
 ## Quick Start
-See below for a quick tour over the basics of the Bayesian Optimization package. More detailed information, other advanced features, and tips on usage/implementation can be found in the [examples](https://github.com/fmfn/BayesianOptimization/tree/master/examples) folder. I suggest that you:
-- Follow the
-[basic tour notebook](https://github.com/fmfn/BayesianOptimization/blob/master/examples/basic-tour.ipynb)
-to learn how to use the package's most important features.
-- Take a look at the
-[advanced tour notebook](https://github.com/fmfn/BayesianOptimization/blob/master/examples/advanced-tour.ipynb)
-to learn how to make the package more flexible, how to deal with categorical parameters, how to use observers, and more.
-- Check out this
-[notebook](https://github.com/fmfn/BayesianOptimization/blob/master/examples/visualization.ipynb)
-with a step by step visualization of how this method works.
-- Explore this [notebook](https://github.com/fmfn/BayesianOptimization/blob/master/examples/exploitation_vs_exploration.ipynb)
-exemplifying the balance between exploration and exploitation and how to
-control it.
-- Go over this [script](https://github.com/fmfn/BayesianOptimization/blob/master/examples/sklearn_example.py)
-for examples of how to tune parameters of Machine Learning models using cross validation and bayesian optimization.
-- Finally, take a look at this [script](https://github.com/fmfn/BayesianOptimization/blob/master/examples/async_optimization.py)
-for ideas on how to implement bayesian optimization in a distributed fashion using this package.
+For a quick tour over the basics of the Bayesian Optimization package and More detailed information, other advanced features, and tips on usage/implementation can be found in the [examples](https://github.com/fmfn/BayesianOptimization/tree/master/examples) folder. 
 
+## How to run?
+
+```
+./BayesianOptimization $ python fmfnBO/run_BO.py
+```
 
 ## How does it work?
 
