@@ -3,7 +3,7 @@
 This is the implementation of the paper **BOCK: Bayesian Optimization with Cylindrical Kernels**(https://arxiv.org/pdf/1806.01619.pdf).
 Goal of this paper is to propose a new Bayesian Optimization algorithm for high dimensional problems. Usually, in Bayesian Optimization, we have just a handful of data compared to these days' big data. We infuse our strong prior knowledge that we want to find a solution around the center of the search space. Moreover, due to statistical efficiency, we try to keep the number of learnable optimal in a sense that it is samll enough not to degrade statistical efficiency and large enough to cover variety of functions we bump into in black-box function optimization problems.
 
-Copyright : https://github.com/ChangYong-Oh/HyperSphere
+Adapted from : https://github.com/ChangYong-Oh/HyperSphere
 
 ## 1. Setup
 
