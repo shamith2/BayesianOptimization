@@ -20,22 +20,6 @@ pip install sampyl-mcmc
 pip install progressbar
 ```
 
-Default python should be the anaconda python.
-
-Different python version is possible. For avaialbe version search
-```
-conda search "^python$"
-```
-
-** Import in existing Python environment **
-
-
-Or to be able to import this code in an existing Python environment, go:
-
-```
-pip install -e git+https://github.com/shamith2/HyperSphere.git#egg=HyperSphere
-```
-
 ## 2. How to run
 * Set **EXPERIMENT_DIR** in **HyperSphere/BO/run_BO.py**
 * (Default values are given) Set other configurations on acqusition function maxmization **N_SPREAD**, **N_SPRAY**, **N_INIT** in **HyperSphere/BO/acquisition/acquisition_maximization.py**
