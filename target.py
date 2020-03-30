@@ -137,7 +137,7 @@ def branin(x1, x2):
 
 branin.pbounds = {'x1': (-5, 10), 'x2': (0, 15)}
 
-def neg_branin(x1, x2):
+def fmfn_neg_branin(x1, x2):
 	a = 1
 	b = 5.1 / (4 * math.pi ** 2)
 	c = 5.0 / math.pi
@@ -154,7 +154,7 @@ def birdy(x1, x2):
 
 birdy.pbounds = {'x1': (-2*np.pi, 2*np.pi), 'x2': (-2*np.pi, 2*np.pi)}
 
-def neg_birdy(x1, x2):
+def fmfn_neg_birdy(x1, x2):
 	return -1.0 * (np.sin(x1) * np.exp((1 - np.cos(x2))**2) + np.cos(x2) * np.exp((1 - np.sin(x1)**2)) + (x1 - x2)**2) 
 
 neg_birdy.pbounds = {'x1': (-2*np.pi, 2*np.pi), 'x2': (-2*np.pi, 2*np.pi)}
