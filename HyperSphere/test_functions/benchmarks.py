@@ -19,7 +19,7 @@ def birdy(x):
 	else:
 		return output
 
-bird.dim = 0
+birdy.dim = 0
 
 
 def branin(x):
