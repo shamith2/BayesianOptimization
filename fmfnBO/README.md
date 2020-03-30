@@ -11,10 +11,10 @@ processes.
 
 ```console
 $ git clone https://github.com/shamith2/BayesianOptimization.git
-pip install --upgrade pip
-pip install numpy
-pip install scipy
-pip install scikit-learn
+$ pip install --upgrade pip
+$ pip install numpy
+$ pip install scipy
+$ pip install scikit-learn
 ```
 
 This is a constrained global optimization package built upon bayesian inference
