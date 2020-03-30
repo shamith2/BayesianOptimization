@@ -9,14 +9,6 @@ Copyright : https://github.com/ChangYong-Oh/HyperSphere
 
 To set up this repo, go:
 
-** Virtual Environment _Without conda_ **
-
-```
-git clone https://github.com/shamith2/HyperSphere.git
-cd HyperSphere
-source setup_pip.sh
-```
-
 ** Virtual Environment _With conda_ **
 
 ```
