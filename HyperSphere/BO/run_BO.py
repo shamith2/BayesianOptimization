@@ -5,10 +5,10 @@ import sys
 import time
 from datetime import datetime
 
-sys.path.append(r'/home/shamith/')
+sys.path.append(r'/home/shamith/')  # change path to where target.py is located
 from target import *
 
-EXPERIMENT_DIR = '/home/shamith/HyperSphere/HyperSphere/experiments/'  # change(d) directory
+EXPERIMENT_DIR = '/home/shamith/BayesianOptimization/HyperSphere/experiments/'  # change path to where experiments dir is to be located
 
 import torch
 from torch.autograd import Variable
@@ -75,7 +75,7 @@ def BO(geometry=None, n_eval=200, path=None, func=None, ndim=None, boundary=Fals
 			bnd = (-1, 1)
 
 		if not os.path.isdir(EXPERIMENT_DIR):
-			raise ValueError('In file : ' + os.path.realpath(__file__) + '\nEXPERIMENT_DIR variable is not properly assigned. Please check it.')
+			os.mkdir(EXPERIMENT_DIR)
 		dir_list = [elm for elm in os.listdir(EXPERIMENT_DIR) if os.path.isdir(os.path.join(EXPERIMENT_DIR, elm))]
 		folder_name = func.__name__ + '_D' + str(ndim) + '_' + exp_conf_str + '_' + datetime.now().strftime('%Y%m%d-%H:%M:%S:%f')
 		os.makedirs(os.path.join(EXPERIMENT_DIR, folder_name))
