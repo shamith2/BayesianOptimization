@@ -1,6 +1,5 @@
 import os
 import sys
-sys.path.append('/home/shamith/')
 
 from bayes_opt import BayesianOptimization
 
@@ -8,12 +7,13 @@ from bayes_opt.logger import JSONLogger
 from bayes_opt.plotter import JSONPlotter
 from bayes_opt.event import Events
 
+sys.path.append('/::host::/')
 from target import *
 
 func = birdy
 
-logs = '/home/shamith/BayesianOptimization/logs/'
-plots = '/home/shamith/BayesianOptimization/plots/'
+logs = r'/::host::/BayesianOptimization/fmfnBO/logs/'
+plots = r'/::host::/BayesianOptimization/fmfnBO/plots/'
 
 if not os.path.isdir(logs):
 	os.mkdir(logs)
