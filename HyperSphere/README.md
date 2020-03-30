@@ -22,7 +22,10 @@ source setup_pip.sh
 ```
 conda create -n HyperSphere python=3.6 anaconda --yes
 git clone https://github.com/shamith2/HyperSphere.git
-source HyperSphere/setup_conda.sh
+conda install pytorch==0.3.1 -c pytorch
+pip install --upgrade pip
+pip install sampyl-mcmc
+pip install progressbar
 ```
 
 Default python should be the anaconda python.
@@ -38,7 +41,7 @@ conda search "^python$"
 Or to be able to import this code in an existing Python environment, go:
 
 ```
-pip install -e git+https://github.com/ChangYong-Oh/HyperSphere.git#egg=HyperSphere
+pip install -e git+https://github.com/shamith2/HyperSphere.git#egg=HyperSphere
 ```
 
 ## 2. How to run
@@ -63,23 +66,23 @@ pip install -e git+https://github.com/ChangYong-Oh/HyperSphere.git#egg=HyperSphe
 ### 2-3. Examples
 BOCK for 95 dimensional branin with 47 evaluations (exclusive of first 2 evaluations)
 ```
-../HyperSphere $ python HyperSphere/BO/run_BO.py -g sphere --origin --warping --parallel -func branin -d 95 -e 47
+../HyperSphere $ python HyperSphere/BO/run_BO.py -g sphere --origin --warping --parallel --func branin -d 95 -e 47
 ```
 BOCK-W (without warping) for 32 dimensional bird with 54 evaluations (exclusive of first 2 evaluations)
 ```
-../HyperSphere $ python HyperSphere/BO/run_BO.py -g sphere --origin --parallel -func bird -d 32 -e 54
+../HyperSphere $ python HyperSphere/BO/run_BO.py -g sphere --origin --parallel --func bird -d 32 -e 54
 ```
 BOCK+B (with boundary) for 32 dimensional bird with 54 evaluations (exclusive of first 2 evaluations)
 ```
-../HyperSphere $ python HyperSphere/BO/run_BO.py -g sphere --origin --warping --boundary --parallel -func bird -d 32 -e 54
+../HyperSphere $ python HyperSphere/BO/run_BO.py -g sphere --origin --warping --boundary --parallel --func bird -d 32 -e 54
 ```
 Matern for 32 dimensional bird with 54 evaluations (exclusive of first 2 evaluations)
 ```
-../HyperSphere $ python HyperSphere/BO/run_BO.py -g cube --parallel -func bird -d 32 -e 54
+../HyperSphere $ python HyperSphere/BO/run_BO.py -g cube --parallel --func bird -d 32 -e 54
 ```
 Matern-ARD for 32 dimensional bird with 54 evaluations (exclusive of first 2 evaluations)
 ```
-../HyperSphere $ python HyperSphere/BO/run_BO.py -g cube --ard --parallel -func bird -d 32 -e 54
+../HyperSphere $ python HyperSphere/BO/run_BO.py -g cube --ard --parallel --func bird -d 32 -e 54
 ```
 Continuing an existing experiment with 10 more evaluations
 ```
