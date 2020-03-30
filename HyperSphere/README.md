@@ -42,27 +42,27 @@ pip install progressbar
 ### 2-3. Examples
 BOCK for 95 dimensional branin with 47 evaluations (exclusive of first 2 evaluations)
 ```
-../HyperSphere $ python HyperSphere/BO/run_BO.py -g sphere --origin --warping --parallel --func branin -d 95 -e 47
+./BayesianOptimization $ python HyperSphere/BO/run_BO.py -g sphere --origin --warping --parallel --func branin -d 95 -e 47
 ```
 BOCK-W (without warping) for 32 dimensional bird with 54 evaluations (exclusive of first 2 evaluations)
 ```
-../HyperSphere $ python HyperSphere/BO/run_BO.py -g sphere --origin --parallel --func bird -d 32 -e 54
+./BayesianOptimization $ python HyperSphere/BO/run_BO.py -g sphere --origin --parallel --func bird -d 32 -e 54
 ```
 BOCK+B (with boundary) for 32 dimensional bird with 54 evaluations (exclusive of first 2 evaluations)
 ```
-../HyperSphere $ python HyperSphere/BO/run_BO.py -g sphere --origin --warping --boundary --parallel --func bird -d 32 -e 54
+./BayesianOptimization $ python HyperSphere/BO/run_BO.py -g sphere --origin --warping --boundary --parallel --func bird -d 32 -e 54
 ```
 Matern for 32 dimensional bird with 54 evaluations (exclusive of first 2 evaluations)
 ```
-../HyperSphere $ python HyperSphere/BO/run_BO.py -g cube --parallel --func bird -d 32 -e 54
+./BayesianOptimization $ python HyperSphere/BO/run_BO.py -g cube --parallel --func bird -d 32 -e 54
 ```
 Matern-ARD for 32 dimensional bird with 54 evaluations (exclusive of first 2 evaluations)
 ```
-../HyperSphere $ python HyperSphere/BO/run_BO.py -g cube --ard --parallel --func bird -d 32 -e 54
+./BayesianOptimization $ python HyperSphere/BO/run_BO.py -g cube --ard --parallel --func bird -d 32 -e 54
 ```
 Continuing an existing experiment with 10 more evaluations
 ```
-../HyperSphere $ python HyperSphere/BO/run_BO.py -p [EXPERIMENT_DIR]/branin_D20_spherewarpingorigin_20180728-12:13:32:828257 -e 10
+./BayesianOptimization $ python HyperSphere/BO/run_BO.py -p [EXPERIMENT_DIR]/branin_D20_spherewarpingorigin_20180728-12:13:32:828257 -e 10
 ```
 
 ### 2-5. Optimizing new functions
@@ -77,7 +77,9 @@ factory_cooling_bill.dim = [number of elements in control_factors]
 ```
 Then you can import this function in **HyperSphere/BO/runb_BO.py** as
 ```
-from ../../../target import factory_cooling_bill
+import sys
+sys.path.append('/::host::/')
+from target import factory_cooling_bill
 ```
 then you run BO with the option **-f factory_cooling_bill**.
 
