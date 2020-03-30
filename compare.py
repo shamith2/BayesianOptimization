@@ -7,8 +7,8 @@ import pandas as pd
 
 
 data_config_filename = r'/::host::/BayesianOptimization/HyperSphere/experiments/::func_name::/data_config.pkl'
-log_file = r'/::host::/BayesianOptimization/fmfnBO/logs/::log_file::.json'
-plot_file = r'/::host::/BayesianOptimization/fmfnBO/plots/::plot_file::.json'
+log_file = r'/::host::/BayesianOptimization/fmfnBO/logs/::func_name::.json'
+plot_file = r'/::host::/BayesianOptimization/fmfnBO/plots/::func_name::.json'
 
 # HyperSphere
 data_config_file = open(data_config_filename, 'rb')
