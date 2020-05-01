@@ -21,7 +21,6 @@ pip install progressbar
 ```
 
 ## 2. How to run
-* Set **EXPERIMENT_DIR** in **HyperSphere/BO/run_BO.py**
 * (Default values are given) Set other configurations on acqusition function maxmization **N_SPREAD**, **N_SPRAY**, **N_INIT** in **HyperSphere/BO/acquisition/acquisition_maximization.py**
 
 
