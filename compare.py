@@ -1,54 +1,108 @@
+import sys
 from matplotlib import pyplot as my_plt
 from matplotlib import patches as my_patch
 import numpy as np
 import pickle
 import json
 import pandas as pd
+import subprocess
 
+from HyperSphere.BO.run_BO import BO
+from fmfnBO.runBO import fmfnBO
+from HyperSphere.test_functions.benchmarks import *
+from target import *
 
-data_config_filename = r'/::host::/BayesianOptimization/HyperSphere/experiments/::func_name::/data_config.pkl'
-log_file = r'/::host::/BayesianOptimization/fmfnBO/logs/::func_name::.json'
-plot_file = r'/::host::/BayesianOptimization/fmfnBO/plots/::func_name::.json'
+def compare_plots(hs_files, fmfn_files):
+    # data file
+    data_config_filename = hs_files + '/data_config.pkl'
+    f_name, log_file, plot_file = fmfn_files
 
-# HyperSphere
-data_config_file = open(data_config_filename, 'rb')
-for key, val in pickle.load(data_config_file).items():
-    if key == 'output':
-        y1 = val.data.numpy()
+    # HyperSphere
+    with open(data_config_filename, 'rb') as data_config_file:
+        for key, val in pickle.load(data_config_file).items():
+            if key == 'output':
+                y1 = val.data.numpy()
+            
+            if key == 'x_input':
+                x1 = val.data.numpy()
+
+    # fmfn/BayesianOptimization
+    # read from file
+    with open(log_file, "r") as f:
+        file_data = f.read()
+
+    # add trailing commas for each line
+    with open(log_file, "r") as f:
+        lines = f.readlines()
+        first_line = lines[0]
+        file_lines = [''.join([',', line.strip(), '\n']) for line in lines[1:]]
+
+    # encaspulate the data
+    with open(plot_file, "w+") as f:
+        f.write('{' + '\n' + '  ' + '"logs"' + ':' + ' ' + '[' + '\n')
+        f.writelines(first_line)
+        f.writelines(file_lines)
+        f.write("    " + "]" + "\n" + "}")
+
+    # load data for visualization
+    with open(plot_file) as json_file:
+        data = json.load(json_file)
+
+    # number of evaluations
+    x2 = np.arange(1, len(lines)+1, 1)
+    # y = f(x)
+    y2 = pd.DataFrame(data['logs']).to_numpy()[:,0]
+
+    # visualization
+    my_plt.figure('HyperSphere vs fmfn')
+    my_plt.title(f"function = {f_name} :: evaluations = 50")
+    red = my_patch.Patch(color='red', label='HyperSphere')
+    blue = my_patch.Patch(color='blue', label='fmfn')
+    my_plt.legend(handles=[red, blue])
+
+    my_plt.plot(x1[:,0], y1, 'r')
+    my_plt.plot(x2, y2, 'b')
+
+    my_plt.show()
+
+if __name__ == '__main__':
     
-    if key == 'x_input':
-        x1 = val.data.numpy()
+    # parameters
+    geometry = 'sphere' 
+    func = 'branin' 
+    d = '2' 
+    e = '2'
 
-data_config_file.close()
+    # subprocess
+    hs = subprocess.Popen(args=['python', 'HyperSphere/BO/run_BO.py', '-g', geometry, '--origin', '--warping',
+                                '--parallel', '-f', func, '-d', d, '-e', e], stdout=subprocess.PIPE, universal_newlines=True)
 
-# fmfn/BayesianOptimization
-with open(log_file, "r") as f:
-    file_data = f.read()
+    while True:
+        output = hs.stdout.readline()
+        if output not in [' ', '\n', '']:
+            hs_files = output
+        print(output.strip())
+        return_code = hs.poll()
+        if return_code is not None: 
+            break
 
-with open(log_file, "r") as f:
-    lines = f.readlines()
-    first_line = lines[0]
-    file_lines = [''.join([',', line.strip(), '\n']) for line in lines[1:]]
+    fmfn = subprocess.Popen(args=['python', 'fmfnBO/runBO.py', '-f', str(func), '-d', str(d),
+                                  '-e', str(e)], stdout=subprocess.PIPE, universal_newlines=True)
 
-with open(plot_file, "w+") as f:
-    f.write('{' + '\n' + '  ' + '"logs"' + ':' + ' ' + '[' + '\n')
-    f.writelines(first_line)
-    f.writelines(file_lines)
-    f.write("    " + "]" + "\n" + "}")
+    while True:
+        output = fmfn.stdout.readline()
+        if output not in [' ', '\n', '']:
+            fmfn_files = output
+        print(output.strip())
+        return_code = fmfn.poll()
+        if return_code is not None: 
+            break
 
-with open(plot_file) as json_file:
-    data = json.load(json_file)
+    # clean up hs_files
+    hs_files = hs_files.strip('\n')
 
-x2 = np.arange(1, len(lines)+1, 1)
-y2 = pd.DataFrame(data['logs']).to_numpy()[:,0]
-
-my_plt.figure('HyperSphere vs fmfn')
-my_plt.title("function = 'bird Function' :: evaluations = 50")
-red = my_patch.Patch(color='red', label='HyperSphere')
-blue = my_patch.Patch(color='blue', label='fmfn')
-my_plt.legend(handles=[red, blue])
-
-my_plt.plot(x1[:,0], y1, 'r')
-my_plt.plot(x2, y2, 'b')
-
-my_plt.show()
+    # clean up fmfn_files
+    fmfn_files = [line.strip().strip("(").strip(")").strip("'") for line in fmfn_files.strip("\n").split(",")]
+    
+    # compare
+    compare_plots(hs_files, fmfn_files)

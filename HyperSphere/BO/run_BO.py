@@ -1,14 +1,20 @@
 import argparse
-import os.path
+import os
 import pickle
 import sys
 import time
 from datetime import datetime
+import pathlib
 
-sys.path.append(r'/::host::/BayesianOptimization/')
+# current working directory
+cwd = os.path.split(pathlib.Path(__file__).parent.absolute())[0]
+parent = os.path.split(cwd)[0]
+if str(parent) not in sys.path:
+	sys.path.append(parent)
+
 from target import *
 
-EXPERIMENT_DIR = '/::host::/BayesianOptimization/HyperSphere/experiments/'
+EXPERIMENT_DIR = os.path.join(cwd, 'experiments/')
 
 import torch
 from torch.autograd import Variable
@@ -236,4 +242,6 @@ if __name__ == '__main__':
 			assert not args.origin
 			assert not args.warping
 
-	print(BO(**vars(args)))
+	hs_file = BO(**vars(args))
+
+	print(hs_file)

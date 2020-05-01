@@ -1,8 +1,8 @@
-import os
+import os, sys, stat
 import tempfile
 import numpy as np
 import torch
-
+import pathlib
 
 def sobol_generate(n_dim, n_point, n_skip=0):
 	if n_dim > 1111:
@@ -11,8 +11,11 @@ def sobol_generate(n_dim, n_point, n_skip=0):
 		try:
 			sequence_file = tempfile.NamedTemporaryFile('r')
 			filename = sequence_file.name
-			cmd = os.path.join(os.path.split(os.path.abspath(os.path.realpath(__file__)))[0], 'sobol_c/sobol')
-			cmd += ' ' + str(int(n_dim)) + ' ' + str(int(n_point)) + ' ' + str(int(n_skip)) + ' ' + filename
+			cmd_file = os.path.join(pathlib.Path(__file__).parent.absolute(), 'sobol_c/sobol')
+			cmd = cmd_file + ' ' + str(int(n_dim)) + ' ' + str(int(n_point)) + ' ' + str(int(n_skip)) + ' ' + filename
+			if (os.error(os.system(cmd))):	
+				os.chmod(cmd_file, stat.S_IRWXU)   # stat.S_IRWXU : read, write and execute permission for owner
+				print(f"\n{cmd_file}: Changed File Permissions to stat.S_IRWXU")
 			os.system(cmd)
 			sequence = np.fromfile(sequence_file.file, dtype=np.float64).astype(np.float32)
 			sequence = sequence.reshape([n_point, n_dim])

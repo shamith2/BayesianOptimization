@@ -3,7 +3,6 @@ import math
 import numpy as np
 
 # HyperSphere Functions
-
 def neg_birdy(x):
 	flat = x.dim() == 1
 	if flat:
@@ -23,12 +22,12 @@ def neg_birdy(x):
 neg_birdy.dim = 0
 
 def bf(x):   # bohachevsky_function
-    return x[0]**2 + 2*(x[1]**2) - 0.3*torch.cos(3*math.pi*x[0]) - 0.4*torch.cos(4*math.pi*x[1]) + 0.7
+	return x[0]**2 + 2*(x[1]**2) - 0.3*torch.cos(3*math.pi*x[0]) - 0.4*torch.cos(4*math.pi*x[1]) + 0.7
 
 bf.dim = 0
 
 def nbf(x):   # bohachevsky_function
-    return -1.0*(x[0]**2 + 2*(x[1]**2) - 0.3*torch.cos(3*math.pi*x[0]) - 0.4*torch.cos(4*math.pi*x[1]) + 0.7)
+	return -1.0*(x[0]**2 + 2*(x[1]**2) - 0.3*torch.cos(3*math.pi*x[0]) - 0.4*torch.cos(4*math.pi*x[1]) + 0.7)
 
 nbf.dim = 0
 
@@ -120,12 +119,12 @@ sq.dim = 0
 
 # FmFn Functions
 
-def sphere(x1, x2):
+def fmfn_sphere(x1, x2):
 	return (x1**2 + x2**2)
 
-sphere.pbounds = {'x1': (-5.12, 5.12), 'x2': (-5.12, 5.12)}
+fmfn_sphere.pbounds = {'x1': (-5.12, 5.12), 'x2': (-5.12, 5.12)}
 
-def branin(x1, x2):
+def fmfn_branin(x1, x2):
 	a = 1
 	b = 5.1 / (4 * math.pi ** 2)
 	c = 5.0 / math.pi
@@ -135,7 +134,7 @@ def branin(x1, x2):
 
 	return a * (x2 - b * x1**2 + c * x1 - r)**2 + s * (1 - t) * np.cos(x1) + s
 
-branin.pbounds = {'x1': (-5, 10), 'x2': (0, 15)}
+fmfn_branin.pbounds = {'x1': (-5, 10), 'x2': (0, 15)}
 
 def fmfn_neg_branin(x1, x2):
 	a = 1
@@ -147,14 +146,16 @@ def fmfn_neg_branin(x1, x2):
 
 	return -1.0 * (a * (x2 - b * x1**2 + c * x1 - r)**2 + s * (1 - t) * np.cos(x1) + s)
 
-neg_branin.pbounds = {'x1': (-5, 10), 'x2': (0, 15)}
+fmfn_neg_branin.pbounds = {'x1': (-5, 10), 'x2': (0, 15)}
 
-def birdy(x1, x2):
+def fmfn_birdy(x1, x2):
+
 	return (np.sin(x1) * np.exp((1 - np.cos(x2))**2) + np.cos(x2) * np.exp((1 - np.sin(x1)**2)) + (x1 - x2)**2) 
 
-birdy.pbounds = {'x1': (-2*np.pi, 2*np.pi), 'x2': (-2*np.pi, 2*np.pi)}
+fmfn_birdy.pbounds = {'x1': (-2*np.pi, 2*np.pi), 'x2': (-2*np.pi, 2*np.pi)}
 
 def fmfn_neg_birdy(x1, x2):
+
 	return -1.0 * (np.sin(x1) * np.exp((1 - np.cos(x2))**2) + np.cos(x2) * np.exp((1 - np.sin(x1)**2)) + (x1 - x2)**2) 
 
-neg_birdy.pbounds = {'x1': (-2*np.pi, 2*np.pi), 'x2': (-2*np.pi, 2*np.pi)}
+fmfn_neg_birdy.pbounds = {'x1': (-2*np.pi, 2*np.pi), 'x2': (-2*np.pi, 2*np.pi)}
