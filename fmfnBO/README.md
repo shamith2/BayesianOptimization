@@ -31,7 +31,7 @@ For a quick tour over the basics of the Bayesian Optimization package and More d
 ## How to run?
 
 ```
-./BayesianOptimization $ python fmfnBO/run_BO.py
+./BayesianOptimization $ python fmfnBO/runBO.py
 ```
 
 ## How does it work?
