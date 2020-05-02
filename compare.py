@@ -98,8 +98,8 @@ if __name__ == '__main__':
         if return_code is not None: 
             break
 
-    fmfn = subprocess.Popen(args=['python', 'fmfnBO/runBO.py', '-f', str(func), '-d', str(d),
-                                  '-e', str(e)], stdout=subprocess.PIPE, universal_newlines=True)
+    fmfn = subprocess.Popen(args=['python', 'fmfnBO/runBO.py', '-f', func, '-d', d,
+                                  '-e', e], stdout=subprocess.PIPE, universal_newlines=True)
 
     while True:
         output = fmfn.stdout.readline()
