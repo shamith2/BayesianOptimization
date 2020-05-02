@@ -76,8 +76,6 @@ factory_cooling_bill.dim = [number of elements in control_factors]
 ```
 Then you can import this function in **HyperSphere/BO/runb_BO.py** as
 ```
-import sys
-sys.path.append('/::host::/')
 from target import factory_cooling_bill
 ```
 then you run BO with the option **-f factory_cooling_bill**.
