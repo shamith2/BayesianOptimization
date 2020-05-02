@@ -80,9 +80,8 @@ def compare_plots(hs_files, fmfn_files):
 if __name__ == '__main__':
     
     # parameters
-    geometry = 'sphere' 
+    geometry = 'cube' 
     func = 'birdy' 
-    fmfn_func = 'neg_birdy'
     d = '2' 
     e = '50'
 
@@ -99,7 +98,7 @@ if __name__ == '__main__':
         if return_code is not None: 
             break
 
-    fmfn = subprocess.Popen(args=['python', 'fmfnBO/runBO.py', '-f', str(fmfn_func), '-d', str(d),
+    fmfn = subprocess.Popen(args=['python', 'fmfnBO/runBO.py', '-f', str(func), '-d', str(d),
                                   '-e', str(e)], stdout=subprocess.PIPE, universal_newlines=True)
 
     while True:
