@@ -25,6 +25,7 @@ def compare_plots(hs_files, fmfn_files):
             
             if key == 'x_input':
                 x1 = val.data.numpy()
+                x1 = x1[:,0]
 
     # fmfn/BayesianOptimization
     # read from file
@@ -46,12 +47,21 @@ def compare_plots(hs_files, fmfn_files):
 
     # load data for visualization
     with open(plot_file) as json_file:
-        data = json.load(json_file)
+        data = pd.DataFrame(json.load(json_file)['logs'])
 
-    # number of evaluations
-    x2 = np.arange(1, len(lines)+1, 1)
+    _x = data['params'].to_list()
+    dim = len(_x[0].values())
+    x_list = [[] for i in range(dim)]
+    for x_ in _x:
+        for i in range(dim):
+            x_list[i].append(tuple(x_.values())[i])
+
+    x_n_eval = np.arange(1, len(lines)+1, 1)
+
+    # x_input
+    x2 = x_list[0]
     # y = f(x)
-    y2 = pd.DataFrame(data['logs']).to_numpy()[:,0]
+    y2 = data['target'].to_numpy()
 
     # visualization
     my_plt.figure('HyperSphere vs fmfn')
@@ -60,8 +70,10 @@ def compare_plots(hs_files, fmfn_files):
     blue = my_patch.Patch(color='blue', label='fmfn')
     my_plt.legend(handles=[red, blue])
 
-    my_plt.plot(x1[:,0], y1, 'r')
+    my_plt.plot(x1, y1, 'r')
     my_plt.plot(x2, y2, 'b')
+
+    my_plt.axhline(y=-106.76)
 
     my_plt.show()
 
@@ -69,12 +81,13 @@ if __name__ == '__main__':
     
     # parameters
     geometry = 'sphere' 
-    func = 'branin' 
+    func = 'birdy' 
+    fmfn_func = 'neg_birdy'
     d = '2' 
-    e = '2'
+    e = '50'
 
     # subprocess
-    hs = subprocess.Popen(args=['python', 'HyperSphere/BO/run_BO.py', '-g', geometry, '--origin', '--warping',
+    hs = subprocess.Popen(args=['python', 'HyperSphere/BO/run_BO.py', '-g', geometry,
                                 '--parallel', '-f', func, '-d', d, '-e', e], stdout=subprocess.PIPE, universal_newlines=True)
 
     while True:
@@ -86,7 +99,7 @@ if __name__ == '__main__':
         if return_code is not None: 
             break
 
-    fmfn = subprocess.Popen(args=['python', 'fmfnBO/runBO.py', '-f', str(func), '-d', str(d),
+    fmfn = subprocess.Popen(args=['python', 'fmfnBO/runBO.py', '-f', str(fmfn_func), '-d', str(d),
                                   '-e', str(e)], stdout=subprocess.PIPE, universal_newlines=True)
 
     while True:
