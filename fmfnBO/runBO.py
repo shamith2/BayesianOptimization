@@ -49,7 +49,7 @@ if __name__ == '__main__':
 	args = parser.parse_args()
 	fmfn_args = vars(args)
 	if args.func_name is not None:
-		exec('func=' + 'fmfn_' + args.func_name)
+		exec('func=' + 'fmfn_' + 'neg_' + args.func_name)
 		fmfn_args['func'] = func
 	del fmfn_args['func_name']
 
