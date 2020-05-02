@@ -73,7 +73,7 @@ def compare_plots(hs_files, fmfn_files):
     my_plt.plot(x1, y1, 'r')
     my_plt.plot(x2, y2, 'b')
 
-    my_plt.axhline(y=-106.76)
+    my_plt.axhline(y=-106.76) # optima
 
     my_plt.show()
 
